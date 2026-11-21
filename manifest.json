@@ -1,0 +1,17 @@
+{
+  "name": "AI Doctor - ប្រព័ន្ធវាយតម្លៃរោគសញ្ញា",
+  "short_name": "AI Doctor",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
