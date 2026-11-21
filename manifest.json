@@ -1,4 +1,5 @@
 {
+  "id": "ai-doctor-app",
   "name": "AI Doctor - ប្រព័ន្ធវាយតម្លៃរោគសញ្ញា",
   "short_name": "AI Doctor",
   "description": "ប្រព័ន្ធ AI ជំនួយការវិភាគរោគសញ្ញា និងណែនាំក្បួនថ្នាំព្យាបាលបឋម",
@@ -16,7 +17,7 @@
       "purpose": "any"
     },
     {
-      "src": "https://sokhom333.github.io/ai-doctor-app/icon-512.png",
+      "src": "https://sokhom333.github.io/ai-doctor-app/icon-512%20(2).png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
