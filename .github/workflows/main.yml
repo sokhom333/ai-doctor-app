@@ -1,0 +1,44 @@
+name: Keep AI Doctor Server Awake
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open and Wake Streamlit App
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium
+          node -e '
+            const { chromium } = require("playwright");
+            (async () => {
+              const browser = await chromium.launch({ headless: true });
+              const page = await browser.newPage();
+              try {
+                await page.goto("https://ai-doctor-csk.streamlit.app/", {
+                  waitUntil: "domcontentloaded",
+                  timeout: 60000
+                });
+                await page.waitForTimeout(5000);
+                const wakeBtn = page.locator("button:has-text(\"Yes, get this app back up\")");
+                if (await wakeBtn.count() > 0) {
+                  console.log("Server is sleeping, waking up...");
+                  await wakeBtn.click();
+                  await page.waitForSelector("[data-testid=\"stAppViewContainer\"]", { timeout: 90000 });
+                  console.log("Server is awake!");
+                } else {
+                  console.log("Server is already active.");
+                }
+              } catch (e) {
+                console.log("Notice:", e.message);
+              } finally {
+                await browser.close();
+              }
+            })();
+          '
